@@ -65,7 +65,7 @@ map.on('load', function() {
 
     map.addSource('ta_buildings', {
         type: 'geojson',
-        data: '../data/ta_buildings.geojson'
+        data: './data/ta_buildings.geojson'
     });
 
     var layers = map.getStyle().layers;
