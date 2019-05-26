@@ -65,7 +65,7 @@ map.on('load', function() {
 
     map.addSource('ta_buildings', {
         type: 'geojson',
-        data: './data/ta_buildings.geojson'
+        data: 'https://gisn.tel-aviv.gov.il/arcgis/rest/services/WM/BuildingsWM/MapServer/0/query?where=1%3D1&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=true&returnTrueCurves=false&outSR=4326&having=&returnIdsOnly=false&f=geojson'
     });
 
     var layers = map.getStyle().layers;
