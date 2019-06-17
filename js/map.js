@@ -11,6 +11,7 @@ var map = new mapboxgl.Map({
 */ 
 var description = '<div id="pop"></div>';
 var nominatim_url = '';
+var dataUrl = "https://gisn.tel-aviv.gov.il/arcgis/rest/services/WM/BuildingsWM/MapServer/0/query?where=OBJECTID+%3E+0+&text=&objectIds=&time=&geometry=&geometryType=esriGeometryEnvelope&inSR=&spatialRel=esriSpatialRelIntersects&relationParam=&outFields=&returnGeometry=true&returnTrueCurves=false&maxAllowableOffset=&geometryPrecision=&outSR=4326&having=&returnIdsOnly=false&returnCountOnly=false&orderByFields=&groupByFieldsForStatistics=&outStatistics=&returnZ=false&returnM=false&gdbVersion=&historicMoment=&returnDistinctValues=false&resultOffset=&resultRecordCount=&queryByDistance=&returnExtentOnly=false&datumTransformation=&parameterValues=&rangeValues=&quantizationParameters=&f=pjson"
 
 var map = new mapboxgl.Map({
     container: 'map', // container id
@@ -63,12 +64,14 @@ map.on('load', function() {
     })*/
     
 
-    map.addSource('ta_buildings', {
+esriGeom = $.getJSON(url, function(data){
+gJ = ArcgisToGeojsonUtils.arcgisToGeoJSON(data)
+        
+map.addSource('ta_buildings', {
         type: 'geojson',
-        data: 'https://gisn.tel-aviv.gov.il/arcgis/rest/services/WM/BuildingsWM/MapServer/0/query?where=1%3D1&geometryType=esriGeometryEnvelope&spatialRel=esriSpatialRelIntersects&outFields=*&returnGeometry=true&returnTrueCurves=false&outSR=4326&having=&returnIdsOnly=false&f=geojson'
+        data: gJ
     });
-
-    var layers = map.getStyle().layers;
+         var layers = map.getStyle().layers;
     
     var labelLayerId;
     for (var i = 0; i < layers.length; i++) {
@@ -131,6 +134,10 @@ map.on('load', function() {
             'fill-extrusion-opacity': .6
     }
     }, labelLayerId);
+})    
+
+
+   
 
     map.on('click', '3d-buildings', function (e) {
         var coordinates = e.features[0].geometry.coordinates.slice();
