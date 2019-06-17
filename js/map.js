@@ -64,7 +64,7 @@ map.on('load', function() {
     })*/
     
 
-esriGeom = $.getJSON(url, function(data){
+esriGeom = $.getJSON(dataUrl, function(data){
 gJ = ArcgisToGeojsonUtils.arcgisToGeoJSON(data)
         
 map.addSource('ta_buildings', {
