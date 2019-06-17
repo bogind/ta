@@ -65,21 +65,21 @@ map.on('load', function() {
     
 
 esriGeom = $.getJSON(dataUrl, function(data){
-gJ = ArcgisToGeojsonUtils.arcgisToGeoJSON(data)
-        
-map.addSource('ta_buildings', {
-        type: 'geojson',
-        data: gJ
-    });
-         var layers = map.getStyle().layers;
-    
-    var labelLayerId;
-    for (var i = 0; i < layers.length; i++) {
-        if (layers[i].type === 'symbol' && layers[i].layout['text-field']) {
-            labelLayerId = layers[i].id;
-            break;
-        }
-    }
+        gJ = ArcgisToGeojsonUtils.arcgisToGeoJSON(data)
+
+        map.addSource('ta_buildings', {
+                type: 'geojson',
+                data: gJ
+            });
+                 var layers = map.getStyle().layers;
+
+            var labelLayerId;
+            for (var i = 0; i < layers.length; i++) {
+                if (layers[i].type === 'symbol' && layers[i].layout['text-field']) {
+                    labelLayerId = layers[i].id;
+                    break;
+                }
+            }
     
     
 
@@ -135,11 +135,8 @@ map.addSource('ta_buildings', {
     }
     }, labelLayerId);
 })    
-
-
-   
-
-    map.on('click', '3d-buildings', function (e) {
+.done(function(){
+ map.on('click', '3d-buildings', function (e) {
         var coordinates = e.features[0].geometry.coordinates.slice();
         
         nominatim_url = "https://nominatim.openstreetmap.org/reverse?format=json&lat="+e.lngLat["lat"]+"&lon="+e.lngLat["lng"]+"&zoom=18&addressdetails=1"
@@ -249,3 +246,10 @@ for (var i = 0; i < toggleableLayerIds.length; i++) {
     var layers = document.getElementById('menu');
     layers.appendChild(link);
 }
+
+
+})
+
+   
+
+   
