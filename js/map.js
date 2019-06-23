@@ -321,7 +321,7 @@ map.on('load', function() {
 
     map.addSource('ta_buildings', {
         type: 'geojson',
-        data: 'http://localhost:8080/geoserver/wfs?service=WFS&version=2.0.0&request=GetFeature&typenames=br7:ta_buildings&outputFormat=json&format_options=callback:loadGeoJson'
+        data: '../data/ta_buildings.geojson'
     });
 
     var layers = map.getStyle().layers;
