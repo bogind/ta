@@ -81,7 +81,7 @@ esriGeom = $.getJSON(dataUrl, function(data){
                 }
             }
     
-        }).done( function(){
+        }).then( function(){
 
     map.addLayer({
         'id': '3d-buildings',
