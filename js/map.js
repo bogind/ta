@@ -109,7 +109,7 @@ esriGeom = $.getJSON(dataUrl, function(data){
             ],
             'fill-extrusion-opacity': .6
     }
-    }, labelLayerId);
+    });//, labelLayerId);
 
     map.addLayer({
         'id': '3d-buildings-selected',
@@ -135,7 +135,7 @@ esriGeom = $.getJSON(dataUrl, function(data){
             ],
             'fill-extrusion-opacity': .6
     }
-    }, labelLayerId);
+    });//, labelLayerId);
 })    
 .done(function(){
  map.on('click', '3d-buildings', function (e) {
