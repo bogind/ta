@@ -64,14 +64,7 @@ map.on('load', function() {
     })*/
     
     var labelLayerId;
-esriGeom = $.getJSON(dataUrl, function(data){
-        gJ = ArcgisToGeojsonUtils.arcgisToGeoJSON(data)
-
-        map.addSource('ta_buildings', {
-                type: 'geojson',
-                data: gJ
-            });
-                 var layers = map.getStyle().layers;
+    var layers = map.getStyle().layers;
 
             
             for (var i = 0; i < layers.length; i++) {
@@ -80,6 +73,15 @@ esriGeom = $.getJSON(dataUrl, function(data){
                     break;
                 }
             }
+        
+esriGeom = $.getJSON(dataUrl, function(data){
+        gJ = ArcgisToGeojsonUtils.arcgisToGeoJSON(data)
+
+        map.addSource('ta_buildings', {
+                type: 'geojson',
+                data: gJ
+            });
+                
     
         }).then( function(){
 
