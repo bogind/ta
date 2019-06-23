@@ -63,7 +63,7 @@ map.on('load', function() {
         }, labelLayerId)
     })*/
     
-
+    var labelLayerId;
 esriGeom = $.getJSON(dataUrl, function(data){
         gJ = ArcgisToGeojsonUtils.arcgisToGeoJSON(data)
 
@@ -73,7 +73,7 @@ esriGeom = $.getJSON(dataUrl, function(data){
             });
                  var layers = map.getStyle().layers;
 
-            var labelLayerId;
+            
             for (var i = 0; i < layers.length; i++) {
                 if (layers[i].type === 'symbol' && layers[i].layout['text-field']) {
                     labelLayerId = layers[i].id;
